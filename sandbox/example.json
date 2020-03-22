@@ -12,14 +12,14 @@
       "z": "5fa403ad.ee22ac",
       "name": "",
       "topic": "",
-      "payload": "{\"accountId\":\"jefferson\",\"personalFoulCount\":6,\"gameDuration\":40,\"gameMonth\":\"June\",\"inSeason\":[\"May\",\"June\",\"July\",\"August\",\"September\"]}",
+      "payload": "{\"accountId\":\"washington\"}",
       "payloadType": "json",
       "repeat": "",
       "crontab": "",
       "once": false,
       "onceDelay": 0.1,
-      "x": 230,
-      "y": 280,
+      "x": 210,
+      "y": 240,
       "wires": [
           [
               "75744874.93ef98"
@@ -37,8 +37,8 @@
       "tostatus": false,
       "complete": "true",
       "targetType": "full",
-      "x": 650,
-      "y": 280,
+      "x": 630,
+      "y": 240,
       "wires": []
   },
   {
@@ -46,14 +46,144 @@
       "type": "json-rules",
       "z": "5fa403ad.ee22ac",
       "name": "",
-      "rules": "{\"rules\":[{\"conditions\":{\"any\":[{\"all\":[{\"fact\":\"gameDuration\",\"operator\":\"equal\",\"value\":40},{\"fact\":\"personalFoulCount\",\"operator\":\"greaterThanInclusive\",\"value\":5},{\"fact\":\"gameMonth\",\"operator\":\"in\",\"value\":{\"fact\":\"inSeason\"}}]},{\"all\":[{\"fact\":\"gameDuration\",\"operator\":\"equal\",\"value\":48},{\"fact\":\"personalFoulCount\",\"operator\":\"greaterThanInclusive\",\"value\":6}]}]},\"event\":{\"type\":\"fouledOut\",\"params\":{\"message\":\"Player has fouled out!\"}}},{\"conditions\":{\"all\":[{\"fact\":\"account-information\",\"operator\":\"equal\",\"value\":\"microsoft\",\"path\":\"$.company\"},{\"fact\":\"account-information\",\"operator\":\"equal\",\"value\":\"terminated\",\"path\":\"$.status\"}]},\"event\":{\"type\":\"microsoft-terminated-employees\",\"params\":{\"message\":\"Employee has been terminated as employee of Microsoft\"}}},{\"conditions\":{\"all\":[{\"fact\":\"employee-tenure\",\"operator\":\"greaterThanInclusive\",\"value\":10,\"params\":{\"unit\":\"years\"}}]},\"event\":{\"type\":\"ten-year-tenure\",\"params\":{\"message\":\"Employee has ten years or more of employement.\"}}}]}",
+      "rules": "{\"rules\":[{\"conditions\":{\"all\":[{\"fact\":\"account-information\",\"operator\":\"equal\",\"value\":\"microsoft\",\"path\":\"$.company\"},{\"fact\":\"account-information\",\"operator\":\"equal\",\"value\":\"terminated\",\"path\":\"$.status\"}]},\"event\":{\"type\":\"microsoft-terminated-employees\",\"params\":{\"message\":\"Employee has been terminated as employee of Microsoft\"}}},{\"conditions\":{\"all\":[{\"fact\":\"employee-tenure\",\"operator\":\"greaterThanInclusive\",\"value\":10,\"params\":{\"unit\":\"years\"}}]},\"event\":{\"type\":\"employee-tenure\",\"params\":{\"message\":\"Employee has five years or more of employement.\"}}}]}",
       "rulesType": "json",
-      "x": 450,
-      "y": 280,
+      "x": 410,
+      "y": 240,
       "wires": [
           [
               "9e57eb11.f47c88"
           ]
       ]
+  },
+  {
+      "id": "38033f81.8675b",
+      "type": "inject",
+      "z": "5fa403ad.ee22ac",
+      "name": "",
+      "topic": "",
+      "payload": "{\"personalFoulCount\":6,\"gameDuration\":40,\"gameMonth\":\"June\",\"inSeason\":[\"May\",\"June\",\"July\",\"August\",\"September\"]}",
+      "payloadType": "json",
+      "repeat": "",
+      "crontab": "",
+      "once": false,
+      "onceDelay": 0.1,
+      "x": 210,
+      "y": 140,
+      "wires": [
+          [
+              "90f3b92.67be648"
+          ]
+      ]
+  },
+  {
+      "id": "f9b40227.2ee0f",
+      "type": "debug",
+      "z": "5fa403ad.ee22ac",
+      "name": "",
+      "active": true,
+      "tosidebar": true,
+      "console": false,
+      "tostatus": false,
+      "complete": "true",
+      "targetType": "full",
+      "x": 630,
+      "y": 140,
+      "wires": []
+  },
+  {
+      "id": "90f3b92.67be648",
+      "type": "json-rules",
+      "z": "5fa403ad.ee22ac",
+      "name": "",
+      "rules": "{\"rules\":[{\"conditions\":{\"any\":[{\"all\":[{\"fact\":\"gameDuration\",\"operator\":\"equal\",\"value\":40},{\"fact\":\"personalFoulCount\",\"operator\":\"greaterThanInclusive\",\"value\":5},{\"fact\":\"gameMonth\",\"operator\":\"in\",\"value\":{\"fact\":\"inSeason\"}}]}]},\"event\":{\"type\":\"fouled-out-in-season-game\",\"params\":{\"message\":\"Player found out in-season-game\"}}}]}",
+      "rulesType": "json",
+      "x": 430,
+      "y": 140,
+      "wires": [
+          [
+              "f9b40227.2ee0f"
+          ]
+      ]
+  },
+  {
+      "id": "9e2e93c2.bd1dd",
+      "type": "comment",
+      "z": "5fa403ad.ee22ac",
+      "name": "Fouled out in season game",
+      "info": "",
+      "x": 250,
+      "y": 80,
+      "wires": []
+  },
+  {
+      "id": "6978f751.57b0c8",
+      "type": "inject",
+      "z": "5fa403ad.ee22ac",
+      "name": "",
+      "topic": "",
+      "payload": "{\"accountId\":\"washington\"}",
+      "payloadType": "json",
+      "repeat": "",
+      "crontab": "",
+      "once": false,
+      "onceDelay": 0.1,
+      "x": 210,
+      "y": 340,
+      "wires": [
+          [
+              "e76b0920.f71068"
+          ]
+      ]
+  },
+  {
+      "id": "1e7cf84b.6d2648",
+      "type": "debug",
+      "z": "5fa403ad.ee22ac",
+      "name": "",
+      "active": true,
+      "tosidebar": true,
+      "console": false,
+      "tostatus": false,
+      "complete": "true",
+      "targetType": "full",
+      "x": 630,
+      "y": 340,
+      "wires": []
+  },
+  {
+      "id": "e76b0920.f71068",
+      "type": "json-rules",
+      "z": "5fa403ad.ee22ac",
+      "name": "",
+      "rules": "{\"rules\":[{\"priority\":10,\"conditions\":{\"all\":[{\"fact\":\"account-information\",\"operator\":\"equal\",\"value\":\"microsoft\",\"path\":\"$.company\"},{\"fact\":\"account-information\",\"operator\":\"equal\",\"value\":\"terminated\",\"path\":\"$.status\"}]},\"event\":{\"type\":\"microsoft-terminated-employees\",\"params\":{\"passed\":true,\"message\":\"Employee has been terminated as employee of Microsoft\"}}},{\"priority\":10,\"conditions\":{\"all\":[{\"fact\":\"employee-tenure\",\"operator\":\"greaterThanInclusive\",\"value\":5,\"params\":{\"unit\":\"years\"}}]},\"event\":{\"type\":\"employee-tenure\",\"params\":{\"passed\":true,\"message\":\"Employee has five years or more of employement.\"}}},{\"priority\":1,\"conditions\":{\"all\":[{\"fact\":\"employee-tenure-passed\",\"operator\":\"equal\",\"value\":true},{\"fact\":\"microsoft-terminated-employees-passed\",\"operator\":\"equal\",\"value\":true}]},\"event\":{\"type\":\"terminated-by-microsoft-with-tenure\",\"params\":{\"passed\":true,\"message\":\"Employee has tenure and was terminated by Microsoft\"}}}]}",
+      "rulesType": "json",
+      "x": 410,
+      "y": 340,
+      "wires": [
+          [
+              "1e7cf84b.6d2648"
+          ]
+      ]
+  },
+  {
+      "id": "6499a411.e37c6c",
+      "type": "comment",
+      "z": "5fa403ad.ee22ac",
+      "name": "First is Microsoft employee second has tenure",
+      "info": "",
+      "x": 310,
+      "y": 200,
+      "wires": []
+  },
+  {
+      "id": "f65b64a6.81bc78",
+      "type": "comment",
+      "z": "5fa403ad.ee22ac",
+      "name": "Rules for tenure and MS eployee must pass",
+      "info": "",
+      "x": 290,
+      "y": 300,
+      "wires": []
   }
 ]
