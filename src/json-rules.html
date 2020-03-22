@@ -1,0 +1,54 @@
+<script type="text/javascript">
+  RED.nodes.registerType('json-rules', {
+    category: 'function',
+    color: '#a6bbcf',
+    defaults: {
+      name: { value: '' },
+      rules: {value:"", validate: RED.validators.typedInput("rulesType")},
+      rulesType: {value:"json"},
+      //datatype: { value: 'current', validate: v => {
+      //  return [ 'xml', 'json'].indexOf(v) !== 1;
+      //} }
+    },
+    inputs: 1,
+    outputs: 1,
+    icon: 'rules.svg',
+    label: "Rules",
+    oneditprepare: function() {
+      $("#node-input-rulesType").val(this.rulesType);
+      $("#node-input-rules").typedInput({
+          default: 'json',
+          typeField: $("#node-input-rulesType"),
+          types:['json']
+      });
+
+    }
+  });
+</script>
+
+<script type="text/x-red" data-template-name="json-rules">
+  <div class="form-row">
+    <label for="node-input-name"><i class="icon-tag"></i> Name</label>
+    <input type="text" id="node-input-name" placeholder="Name">
+  </div>
+
+
+  <div class="form-row">
+    <label for="node-input-rules"><i class="fas fa-project-diagram"></i> Rules</label>
+    <input type="text" id="node-input-rules" style="width:70%">
+    <input type="hidden" id="node-input-rulesType">
+  </div>
+
+</script>
+
+<script type="text/x-red" data-help-name="rules">
+  <p>
+
+  </p>
+  <p>
+      The API provides :
+  </p>
+  <ul>
+      <li><strong>USD:</strong> US dollar</li>
+  </ul>
+</script>
