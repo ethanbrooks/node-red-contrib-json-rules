@@ -1,4 +1,4 @@
-# node-red-contrib-data-transform
+# node-red-contrib-json-rules
 
 ## Build
 
@@ -26,5 +26,4 @@ $ npm publish
 - - -
 
 Copyright Ethan Brooks, 2019
-# node-red-contrib-json-rules
-# node-red-contrib-json-rules
+
